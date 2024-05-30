@@ -3,7 +3,7 @@
 import type { IApiResponse } from '@/models/IApiResponse';
 import type { IEmployee } from '@/models/IEmployee';
 import { onMounted, ref } from 'vue';
-import EmployeeComp from './EmployeeComp.vue';
+import EmployeePresentation from './EmployeePresentation.vue';
 
 
 const employees = ref<IEmployee[]>([]);
@@ -22,7 +22,7 @@ const employees = ref<IEmployee[]>([]);
     <h1>Our team</h1>
     <div class="employeeWrapper">
       <article v-for="employee in employees" :key="employee.id" class="employeeContainer">
-        <EmployeeComp :employee="employee"></EmployeeComp>
+        <EmployeePresentation :employee="employee"></EmployeePresentation>
       </article>
     </div>
   </section>
