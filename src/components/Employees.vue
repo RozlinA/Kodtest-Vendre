@@ -8,12 +8,30 @@ import EmployeePresentation from './EmployeePresentation.vue';
 
 const employees = ref<IEmployee[]>([]);
 
-  onMounted(async () => {
-    const response = await fetch("https://reqres.in/api/users");
-    const data: IApiResponse = await response.json();
-    employees.value = data.data;
-    console.log(data.data)
-  });
+const currentPage = ref(1);
+
+const getEmployees = async (page: number) => {
+  const response = await fetch(`https://reqres.in/api/users?page=${page}`);
+  const data: IApiResponse = await response.json();
+  employees.value = data.data;
+  console.log(data.data)
+}
+
+onMounted(async () => {
+  getEmployees(currentPage.value)
+});
+
+
+const handlePage = () => {
+  if(currentPage.value === 1){
+    currentPage.value++;
+     getEmployees(currentPage.value);
+  }
+  else{
+    currentPage.value--;
+    getEmployees(currentPage.value);
+  }
+}
 
 </script>
 
@@ -25,6 +43,7 @@ const employees = ref<IEmployee[]>([]);
         <EmployeePresentation :employee="employee"></EmployeePresentation>
       </article>
     </div>
+    <button @click="handlePage">{{ currentPage == 1 ? "Go to page 2" : "Go to page 1" }}</button>
   </section>
 </template>
 
@@ -52,6 +71,18 @@ const employees = ref<IEmployee[]>([]);
     font-weight: bold;
     padding-bottom: 50px;
     color: black;
+  }
+
+  button {
+    background-color: #5333ED;
+    color: white;
+    font-size: 16px;
+    padding: 18px 70px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 48px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   @media screen and (min-width: 768px) {
