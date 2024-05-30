@@ -19,5 +19,30 @@ import type { IEmployee } from '@/models/IEmployee';
 </template>
 
 <style scoped>
+  img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+ }
 
+ h6 {
+  font-size: 18px;
+ }
+
+ i {
+  font-size: 25px;
+ }
+
+ i:hover {
+  color: rgb(69, 165, 236);
+ }
+
+ @media screen and (min-width: 768px) {
+    img {
+      width: 180px;
+      height: 180px;
+    }
+  } 
 </style>

@@ -29,5 +29,35 @@ const employees = ref<IEmployee[]>([]);
 </template>
 
 <style scoped>
+  .employeeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .employeeWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+
+  .employeeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 64px;
+    font-weight: bold;
+    padding-bottom: 50px;
+    color: black;
+  }
+
+  @media screen and (min-width: 768px) {
+    .employeeWrapper {
+      grid-template-columns: repeat(3, 1fr); 
+    }
+  } 
 
 </style>
