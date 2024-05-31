@@ -1,10 +1,8 @@
 <script setup lang="ts">
-/* __placeholder__ */
 import type { IApiResponse } from '@/models/IApiResponse';
 import type { IEmployee } from '@/models/IEmployee';
 import { onMounted, ref } from 'vue';
 import EmployeePresentation from './EmployeePresentation.vue';
-
 
 const employees = ref<IEmployee[]>([]);
 
@@ -14,13 +12,11 @@ const getEmployees = async (page: number) => {
   const response = await fetch(`https://reqres.in/api/users?page=${page}`);
   const data: IApiResponse = await response.json();
   employees.value = data.data;
-  console.log(data.data)
 }
 
 onMounted(async () => {
   getEmployees(currentPage.value)
 });
-
 
 const handlePage = () => {
   if(currentPage.value === 1){
@@ -32,7 +28,6 @@ const handlePage = () => {
     getEmployees(currentPage.value);
   }
 }
-
 </script>
 
 <template>
@@ -54,16 +49,11 @@ const handlePage = () => {
     align-items: center;
   }
 
-  .employeeWrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-  }
-
   .employeeContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 5px;
   }
 
   h1 {
@@ -83,6 +73,14 @@ const handlePage = () => {
     margin-top: 48px;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  @media screen and (min-width: 600px) {
+    .employeeWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
   }
 
   @media screen and (min-width: 768px) {
